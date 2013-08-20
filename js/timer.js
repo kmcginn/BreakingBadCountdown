@@ -6,8 +6,31 @@ MILLI_IN_SECOND = 1000;
 $(document).ready(function(){
 
   var running = setInterval(function(){updateTime()}, 100);
+  resizeFont();
+
+  $("#test").mouseover(function(){
+    $("#test").html("<img src='img/scratch/provides_elem.png'>");
+  });
+
+  $("#test").mouseout(function(){
+    $("#test").html("ba");
+  });
 
 });
+
+var resizeTimer;
+
+$(window).resize(function(){
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(resizeFont, 100);
+});
+
+
+function resizeFont(){
+  var w=window.innerWidth || document.documentElement.clientWidth|| document.body.clientWidth;
+  var newSize = 16*w/376.0;
+  $(".phrase").css('font-size',newSize);
+}
 
 function updateTime() {
   curr = new Date();
